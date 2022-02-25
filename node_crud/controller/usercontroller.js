@@ -40,24 +40,23 @@ exports.find=(req,res)=>{
                 res.send(user)
             })
             .catch(err => {
-                res.status(500).send({ message : err.message || "Error Occurred while retriving user information" })
+                res.status(500).send({ message : err.message })
             })
     }
 };
 exports.updated=(req,res)=>{
     if(!req.body){
         return res.status(400).send({message:'error'});
-       
     }
-    const id = req.body.id;
-    userdb.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+    const id = req.params.id;
+    userdb.findByIdAndUpdate(id,req.body,{ useFindAndModify: false})
     .then(data=>{
         if(!data)
         {
             res.status(404).send({message:'error'});
         }
         else{
-            res.send(data);
+            res.send(data)
         }
     })
     .catch(err=>{
