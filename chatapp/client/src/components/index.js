@@ -1,3 +1,6 @@
 export {default as ListNav} from './ListNav'
 export {default as Main} from './Main'
 export {default as Search} from './Search'
+export {default as TeamlList} from './TeamlList'
+export {default as TeamPreview} from './TeamPreview'
+export {default as Auth} from './Auth'

@@ -2,7 +2,8 @@ import React from 'react'
 
 const Main = () => {
   return (
-  <div>
+  <div className='main' data-mobile-height>
+    ada
   </div>
 )}
 
