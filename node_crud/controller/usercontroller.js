@@ -1,4 +1,3 @@
-const user = require('../models/user');
 const userdb = require('../models/user')
 exports.create=(req,res)=>{
 if(!req.body){

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { ChannelList, useChatContext } from "stream-chat-react";
-import Cookies from "universal-cookie";
+import React, { useState } from 'react';
+import { ChannelList, useChatContext } from 'stream-chat-react';
+import Cookies from 'universal-cookie';
 
 import { Search, TeamlList, TeamPreview } from ".";
 import Logo from "../assets/images/brand.svg";
-
-const Navigation = () => {
+const cookies = new Cookies();
+const Navigation = ({ logout }) => {
   return (
     <div className="navigation navbar navbar-light justify-content-center py-xl-7">
       <a href="#" className="d-none d-xl-block mb-6">
@@ -33,30 +33,60 @@ const Navigation = () => {
             <div className="badge badge-dot badge-primary badge-bottom-center"></div>
           </a>
         </li>
+        <li className="nav-item mt-xl-9">
+          <div
+            className="nav-link position-relative p-0 py-xl-3"
+            onClick={logout}
+          >
+            <i className="icon-lg fe-user"></i>
+          </div>
+        </li>
       </ul>
     </div>
   );
 };
 const ListNav = () => {
+  const logout = () => {
+    cookies.remove("token");
+    cookies.remove("userId");
+    cookies.remove("name");
+    cookies.remove("fullName");
+    cookies.remove("avatar");
+    cookies.remove("hashedPassword");
+    cookies.remove("phoneNumber");
+    window.location.reload();
+  };
   return (
     <>
-      <Navigation />
+      <Navigation logout={logout} />
       <div className="sidebar">
         <div className="tab-content h-100" role="tablist">
           <div className="hide-scrollbar">
             <div className="container-fluid py-6">
               <Search />
+
               <ChannelList
                 filters={{}}
                 channelRenderFilterFn={() => {}}
+
                 List={(listProps) => (<TeamlList {...listProps} type="team" />)}
-                Preview={(previewProps)=>(<TeamPreview {...previewProps} type="team"/>)}
+
+                Preview={(previewProps) => (
+                  <TeamPreview {...previewProps} type="team" />
+                )}
               />
-                <ChannelList
+
+              <ChannelList
                 filters={{}}
                 channelRenderFilterFn={() => {}}
-                List={(listProps) => (<TeamlList {...listProps} type="messaging" />)}
-                Preview={(previewProps)=>(<TeamPreview {...previewProps} type="messaging"/>)}
+
+                List={(listProps) => (
+                  <TeamlList {...listProps} type="messaging" />
+                )}
+
+                Preview={(previewProps) => (
+                  <TeamPreview {...previewProps} type="messaging" />
+                )}
               />
             </div>
           </div>

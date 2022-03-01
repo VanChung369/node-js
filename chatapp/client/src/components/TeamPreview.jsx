@@ -8,9 +8,8 @@ const TeamPreview = ({ Channel, type }) => {
     </div>
   );
   const userchat = () => {
-    const members = Object.values(Channel.state.members).find(
-      ({ user }) => user.id === client.userID
-    );
+    console.log("hello");
+    const members = Object.values(Channel.state.members).filter(({ user }) => user.id !== client.userId);
     return (
       <div>
         <nav className="nav d-block list-discussions-js mb-n6">
