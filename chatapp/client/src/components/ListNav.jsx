@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ChannelList, useChatContext } from 'stream-chat-react';
-import Cookies from 'universal-cookie';
+import React, { useState } from "react";
+import { ChannelList, useChatContext } from "stream-chat-react";
+import Cookies from "universal-cookie";
 
 import { Search, TeamlList, TeamPreview } from ".";
 import Logo from "../assets/images/brand.svg";
@@ -21,6 +21,22 @@ const Navigation = ({ logout }) => {
         className="nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center py-3 py-lg-0"
         role="tablist"
       >
+        <li class="nav-item d-none d-xl-block invisible flex-xl-grow-1">
+          <a class="nav-link position-relative p-0 py-xl-3" href="#" title="">
+            <i class="icon-lg fe-x"></i>
+          </a>
+        </li>
+        <li className="nav-item mt-xl-9">
+          <a
+            class="nav-link position-relative p-0 py-xl-3"
+            data-toggle="tab"
+            href="#tab-content-friends"
+            title="Friends"
+            role="tab"
+          >
+            <i class="icon-lg fe-users"></i>
+          </a>
+        </li>
         <li className="nav-item mt-xl-9">
           <a
             className="nav-link position-relative p-0 py-xl-3 active"
@@ -33,13 +49,22 @@ const Navigation = ({ logout }) => {
             <div className="badge badge-dot badge-primary badge-bottom-center"></div>
           </a>
         </li>
-        <li className="nav-item mt-xl-9">
+        <li className="nav-item mt-xl-9 d-none d-xl-block flex-xl-grow-1">
           <div
             className="nav-link position-relative p-0 py-xl-3"
             onClick={logout}
           >
-            <i className="icon-lg fe-user"></i>
+            <i className="icon-lg fe-log-out"></i>
           </div>
+        </li>
+        <li className="nav-item mt-xl-9">
+          <a
+            class="nav-link position-relative p-0 py-xl-3"
+            href="#"
+            title="Settings"
+          >
+            <i class="icon-lg fe-settings"></i>
+          </a>
         </li>
       </ul>
     </div>
@@ -68,9 +93,7 @@ const ListNav = () => {
               <ChannelList
                 filters={{}}
                 channelRenderFilterFn={() => {}}
-
-                List={(listProps) => (<TeamlList {...listProps} type="team" />)}
-
+                List={(listProps) => <TeamlList {...listProps} type="team" />}
                 Preview={(previewProps) => (
                   <TeamPreview {...previewProps} type="team" />
                 )}
@@ -79,11 +102,9 @@ const ListNav = () => {
               <ChannelList
                 filters={{}}
                 channelRenderFilterFn={() => {}}
-
                 List={(listProps) => (
                   <TeamlList {...listProps} type="messaging" />
                 )}
-
                 Preview={(previewProps) => (
                   <TeamPreview {...previewProps} type="messaging" />
                 )}
