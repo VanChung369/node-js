@@ -48,7 +48,7 @@ module.exports.login= async(req,res,next)=>{
 module.exports.alluser=async(req,res,next)=>{
 try{
     const user = await User.find({_id:{$ne : req.params.id}}).select([
-        "name","email","avata","_id"
+        "name","email","avatar","_id"
     ]);
    return res.json(user);
 }
